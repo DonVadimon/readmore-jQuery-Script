@@ -1,0 +1,72 @@
+// Variables
+@import 'variables';
+
+/* Блок с текстом */
+$desc-height: 3em;
+
+.content_block {
+    overflow: hidden;
+    position: relative;
+    min-height: $desc-height;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////// ANIMATION DOESN'T WORK /////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@keyframes height_grow {
+    from {
+        min-height: $desc-height;
+    }
+
+    to {
+        min-height: auto;
+    }
+}
+
+@keyframes height_shrink {
+    from {
+        min-height: auto;
+    }
+
+    to {
+        min-height: $desc-height;
+    }
+}
+
+$anim_d: 2s;
+.content_block.show {
+    height: auto;
+    animation-name: height_grow;
+    animation-duration: $anim_d;
+}
+
+.content_block.hide {
+    height: $desc-height;
+    animation-name: height_shrink;
+    animation-duration: $anim_d;
+}
+
+.content_block.hide:after {
+    content: "";
+    display: block;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%)
+}
+
+/* Кнопка */
+.content_toggle {
+    display: inline-block;
+    padding: 15px 20px;
+    font-size: inherit;
+    text-decoration: none;
+    color: $green-blue;
+}
+
+.content_toggle:hover {
+    color: $dark-green;
+}
